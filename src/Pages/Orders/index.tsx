@@ -40,10 +40,9 @@ const Orders = () => {
                             <div className={styles.quantity}>Total Quantity: {item.quantity}</div>
                         </div>)
                     )
-
                 ) : (<></>)}
-
             </div>
+            {orderDetails && orderDetails.total && (<div className={styles.total}>Total Amount: ${orderDetails.total}</div>)}
 
             {orderDetails && orderDetails.payer && orderDetails.payer.address ? (
                 <div className={styles.payerDetailsContainer}>
