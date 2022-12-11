@@ -14,11 +14,6 @@ function App() {
   return (
     <Router>
       <CartProvider>
-        <div className={styles.mainHeading}>
-          <h1>
-            Fake Alibaba
-          </h1>
-        </div>
         <Header />
         <div className={styles.content}>
           <div className={styles.mainContent}>

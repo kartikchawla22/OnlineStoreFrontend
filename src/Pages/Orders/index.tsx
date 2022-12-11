@@ -23,23 +23,84 @@ const Orders = () => {
         <div className={styles.container}>
             <div className={styles.content}>
                 {orderDetails && orderDetails.items ? (
-                    <div>
-                        <ProductCard
-                            imageUrl={orderDetails.items[0].imageUrl}
-                            name={orderDetails.items[0].name}
-                            description={orderDetails.items[0].description}
-                            maxQuantity={orderDetails.items[0].maxQuantity}
-                            price={orderDetails.items[0].price}
-                            itemId={orderDetails.items[0].itemId}
-                            key={orderDetails.items[0].itemId}
-                            showQuantitySelector={false}
-                            updateCart={() => { }} />
-                        <div>Total Quantity: {orderDetails.items[0].quantity}</div>
+                    orderDetails.items.map((item: any, index: number) =>
+                    (
+                        <div key={index}>
+                            <ProductCard
+                                imageUrl={item.imageUrl}
+                                name={item.name}
+                                description={item.description}
+                                maxQuantity={item.maxQuantity}
+                                price={item.price}
+                                itemId={item.itemId}
+                                key={item.itemId}
+                                showQuantitySelector={false}
+                                updateCart={() => { }}
+                            />
+                            <div className={styles.quantity}>Total Quantity: {item.quantity}</div>
+                        </div>)
+                    )
 
-                    </div>
                 ) : (<></>)}
 
             </div>
+
+            {orderDetails && orderDetails.payer && orderDetails.payer.address ? (
+                <div className={styles.payerDetailsContainer}>
+                    <h3>Payer Details</h3>
+                    <div className={styles.payerDetails}>
+                        <div className={styles.kvp}>
+                            <span>
+                                name:
+                            </span>
+                            <span>
+                                {orderDetails.payer.address.name.full_name}
+                            </span>
+                        </div>
+
+                        <div className={styles.kvp}>
+                            <span>
+                                Address:
+                            </span>
+                            <span>
+                                {orderDetails.payer.address.address.address_line_1}
+                            </span>
+                        </div>
+                        <div className={styles.kvp}>
+                            <span>
+                                Provine:
+                            </span>
+                            <span>
+                                {orderDetails.payer.address.address.admin_area_1}
+                            </span>
+                        </div>
+                        <div className={styles.kvp}>
+                            <span>
+                                city:
+                            </span>
+                            <span>
+                                {orderDetails.payer.address.address.admin_area_2}
+                            </span>
+                        </div>
+                        <div className={styles.kvp}>
+                            <span>
+                                Country Code:
+                            </span>
+                            <span>
+                                {orderDetails.payer.address.address.country_code}
+                            </span>
+                        </div>
+                        <div className={styles.kvp}>
+                            <span>
+                                Postal Code:
+                            </span>
+                            <span>
+                                {orderDetails.payer.address.address.postal_code}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            ) : (<></>)}
         </div>
     )
 }
