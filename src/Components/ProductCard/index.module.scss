@@ -1,0 +1,28 @@
+.container {
+    margin: 10px;
+}
+
+.productCard {
+    align-items: center;
+    width: 18rem;
+
+    .cardImageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+
+        .cardImage {
+            height: 150px;
+            object-fit: cover;
+        }
+    }
+
+    :global {
+
+        .card-text {
+            text-transform: capitalize;
+        }
+    }
+
+}

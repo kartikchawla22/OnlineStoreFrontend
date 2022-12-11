@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from './Pages/Home';
+import CartProvider from './Providers/CardProvider/Cart';
+import SuccessPage from './Pages/Success';
+import CancelPage from './Pages/Cancel';
+import styles from './index.module.scss';
+import "bootstrap/dist/css/bootstrap.css";
+import Header from "./Components/Header";
+import Orders from "./Pages/Orders";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <CartProvider>
+        <div className={styles.mainHeading}>
+          <h1>
+            Fake Alibaba
+          </h1>
+        </div>
+        <Header />
+        <div className={styles.content}>
+          <div className={styles.mainContent}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/success" element={<SuccessPage />} />
+              <Route path="/cancel" element={<CancelPage />} />
+              <Route path="/orders" element={<Orders />} />
+              {/* <Route
+                path="*"
+                element={<Navigate to="/" />}
+              /> */}
+            </Routes>
+          </div>
+        </div>
+      </CartProvider>
+    </Router >
   );
 }
 
